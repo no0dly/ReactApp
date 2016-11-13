@@ -4,14 +4,15 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var {Provider} = require('react-redux');
 
 var Main       = require('Main');
-var News       = require('News');
 var Users      = require('Users');
 var VkAPI      = require('VkAPI');
+import News from 'News';
 
 var actions    = require('actions');
 var store      = require('configureStore').configure();
+var VkAPI      = require('VkAPI');
 
-var initialState = [
+var initState = [
     {
         id: "45",
         firstName: "Андрей",
@@ -53,13 +54,19 @@ var initialState = [
         hostel: ""
     }
 ];
+var initNews = VkAPI.getNews();
 
 store.subscribe(()=> {
     var state = store.getState();
     console.log('NewState ', state);
+
+    VkAPI.setNews(state.news);
+
 });
 
-store.dispatch(actions.addUsers(initialState));
+store.dispatch(actions.addInitNews(initNews));
+store.dispatch(actions.addUsers(initState));
+
 
 // VkAPI.getUsers().then(function(users) {
 //     store.dispatch(actions.addUsers(users));

@@ -3,16 +3,19 @@ var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils =  require('react-addons-test-utils');
+var {Provider} = require('react-redux');
 
-import usersList from 'configureStore';
 import {configure} from 'configureStore';
+import ConnectedUsersList, {UsersList} from 'UsersList';
+import ConnectedUsersItem, {UsersItem} from 'UsersItem';
+
 
 describe('UsersList component',() => {
     it('Should exist', () => {
         expect(UsersList).toExist();
     });
 
-    it('Should render UserItem for each user', () => {
+    it('Should render UsersItem for each user', () => {
         var users = [
             {
                 id: "45",
@@ -36,6 +39,19 @@ describe('UsersList component',() => {
             }
         ];
 
+        var store = configure({
+            users
+        });
+
+        var provider = TestUtils.renderIntoDocument(
+            <Provider store={store}>
+                <ConnectedUsersList/>
+            </Provider>
+        );
+        var usersList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedUsersList)[0];
+        var usersComponents = TestUtils.scryRenderedComponentsWithType(usersList, ConnectedUsersItem);
+
+        expect(usersComponents.length).toBe(users.length);
 
     });
 });
