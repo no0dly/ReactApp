@@ -32,3 +32,19 @@ export var removeNews = (id) => {
         id
     }
 }
+
+export var editNews = (id) => {
+    return {
+        type: 'EDIT_NEWS',
+        id
+    }
+}
+
+export var saveNews = (id, newTitle, newDescription) => {
+    return {
+        type: 'SAVE_NEWS',
+        id,
+        title: newTitle,
+        description: newDescription
+    }
+}

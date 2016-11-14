@@ -29,6 +29,35 @@ export var newsReducer = ( state = [], action) => {
         case 'REMOVE_NEWS':
             return state.filter( (news) => news.id !== action.id );
 
+        case 'EDIT_NEWS':
+            return state.map( (news) => {
+                if(news.id === action.id) {
+                    return {
+                        ...news,
+                        editMode: true
+                    }
+                }
+                return news;
+
+            });
+
+        case 'SAVE_NEWS':
+            return state.map( (news) => {
+                if(news.id === action.id) {
+                    var newTitle = (action.title && action.title.length > 0) ? action.title : news.title;
+                    var newDescription = (action.description && action.description.length > 0) ? action.description : news.description;
+                    return {
+                        ...news,
+                        editMode: false,
+                        title: newTitle,
+                        description: newDescription,
+                        editedAt: moment().unix()
+                    }
+                }
+                return news;
+
+            });
+
         case 'ADD_INITIAL_NEWS':
             return [
                 ...state,

@@ -67,7 +67,7 @@ store.subscribe(()=> {
 store.dispatch(actions.addInitNews(initNews));
 store.dispatch(actions.addUsers(initState));
 
-
+// 
 // VkAPI.getUsers().then(function(users) {
 //     store.dispatch(actions.addUsers(users));
 // },function() {

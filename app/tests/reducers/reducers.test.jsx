@@ -84,4 +84,100 @@ describe('reducers',() => {
         var res = reducers.newsReducer(df([]), df(action));
         expect(res[0].title).toEqual(action.initNews[0].title);
     });
+
+    it('editNews', () => {
+        var initNews = [{
+            id: 1,
+            title: 'Putin',
+            description: 'President',
+            createdAt: 1231231
+        },{
+            id: 2,
+            title: 'Vadim',
+            description: 'Non President',
+            createdAt: 1231231
+        }];
+        var action = {
+            type: 'EDIT_NEWS',
+            id: 1
+        };
+
+        var res = reducers.newsReducer(df(initNews), df(action));
+        expect(res[0].editMode).toEqual(true);
+        expect(res[1].editMode).toEqual(undefined);
+    });
+    describe('saveNews',() => {
+        it('Should change mode after saveNews', () => {
+            var initNews = [{
+                id: 1,
+                title: 'Putin',
+                description: 'President',
+                createdAt: 1231231,
+                editMode: true
+            },{
+                id: 2,
+                title: 'Vadim',
+                description: 'Non President',
+                createdAt: 1231231
+            }];
+
+            var action = {
+                type: 'SAVE_NEWS',
+                id: 1,
+                title: 'Hello world',
+                description: 'Non'
+            };
+
+            var res = reducers.newsReducer(df(initNews), df(action));
+            expect(res[0].editMode).toEqual(false);
+        });
+        it('Should add editedAt property after save', () => {
+            var initNews = [{
+                id: 1,
+                title: 'Putin',
+                description: 'President',
+                createdAt: 1231231,
+                editMode: true
+            },{
+                id: 2,
+                title: 'Vadim',
+                description: 'Non President',
+                createdAt: 1231231
+            }];
+
+            var action = {
+                type: 'SAVE_NEWS',
+                id: 1,
+                title: 'Hello world',
+                description: 'Non'
+            };
+
+            var res = reducers.newsReducer(df(initNews), df(action));
+            expect(res[0].editedAt).toExist();
+        });
+        it('Should not change description if empty', () => {
+            var initNews = [{
+                id: 1,
+                title: 'Putin',
+                description: 'President',
+                createdAt: 1231231,
+                editMode: true
+            },{
+                id: 2,
+                title: 'Vadim',
+                description: 'Non President',
+                createdAt: 1231231
+            }];
+
+            var action = {
+                type: 'SAVE_NEWS',
+                id: 1,
+                title: 'Hello world',
+                description: ''
+            };
+
+            var res = reducers.newsReducer(df(initNews), df(action));
+            expect(res[0].description).toEqual(initNews[0].description);
+        });
+    });
 });

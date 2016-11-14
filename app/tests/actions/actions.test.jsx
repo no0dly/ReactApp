@@ -75,4 +75,28 @@ describe('Actions',() => {
 
         expect(res).toEqual(action);
     });
+
+    it('Should generate editNews text action', () => {
+        var action = {
+            type: 'EDIT_NEWS',
+            id: 1
+        }
+
+        var res = actions.editNews(action.id);
+
+        expect(res).toEqual(action);
+    });
+
+    it('Should generate saveNews text action', () => {
+        var action = {
+            type: 'SAVE_NEWS',
+            id: 1,
+            title: 'Putin',
+            description: 'President'
+        }
+
+        var res = actions.saveNews(action.id, action.title, action.description);
+
+        expect(res).toEqual(action);
+    });
 });
