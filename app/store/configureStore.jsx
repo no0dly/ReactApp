@@ -1,11 +1,12 @@
 var redux = require('redux');
-var {newsReducer, usersReducer, modalsReducer} = require('reducers');
+var { newsReducer, usersReducer, modalsReducer, searchTextReducer } = require('reducers');
 
 export var configure = (initialState = {}) => {
     var reducer = redux.combineReducers({
         news: newsReducer,
         users: usersReducer,
-        modalExpanded: modalsReducer
+        modalExpanded: modalsReducer,
+        searchText: searchTextReducer
     });
 
     var store = redux.createStore(reducer, initialState, redux.compose(

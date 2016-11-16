@@ -26,7 +26,7 @@ export var NewsItem = React.createClass({
         this.refs.editedDescription.value = '';
 
         dispatch(actions.saveNews(id, newTitle, newDescription));
-
+        
 
     },
 

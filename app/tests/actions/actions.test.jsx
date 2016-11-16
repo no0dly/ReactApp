@@ -99,4 +99,15 @@ describe('Actions',() => {
 
         expect(res).toEqual(action);
     });
+
+    it('Should generate searchText text action', () => {
+        var action = {
+            type: 'SEARCH_NEWS',
+            searchText: 'Loko'
+        }
+
+        var res = actions.searchNews(action.searchText);
+
+        expect(res).toEqual(action);
+    });
 });

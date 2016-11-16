@@ -76,3 +76,12 @@ export var modalsReducer = (state = false, action) => {
             return state;
     }
 }
+
+export var searchTextReducer = (state = '', action) => {
+    switch (action.type) {
+        case 'SEARCH_NEWS':
+            return action.searchText;
+        default:
+            return state;
+    }
+}

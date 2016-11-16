@@ -4,14 +4,9 @@ var actions  = require('actions');
 
 import NewsModal from 'NewsModal';
 import NewsList from 'NewsList';
+import NewsForm from 'NewsForm';
 
 export var News = React.createClass({
-    toggleModal() {
-        var {dispatch} = this.props;
-
-        dispatch(actions.toggleModal());
-    },
-
     render() {
         var {modalExpanded} = this.props;
         var renderModal = () => {
@@ -26,9 +21,7 @@ export var News = React.createClass({
                         <div className="level-left title">
                             <h1>News</h1>
                         </div>
-                        <div className="level-right">
-                            <a onClick={this.toggleModal} className="button is-primary">Add news</a>
-                        </div>
+                        <NewsForm/>
                     </div>
                 </div>
                 <NewsList/>

@@ -24,4 +24,30 @@ describe('API',() => {
             expect(actualNews).toEqual(news);
         });
     });
+
+    describe('',() => {
+        var news = [{
+                id: 1,
+                title: 'Putin',
+                description: 'President',
+                createdAt: 1231231,
+                editMode: true
+            },{
+                id: 2,
+                title: 'Vadim',
+                description: 'Non President',
+                createdAt: 1231231
+            },
+            {
+                id: 3,
+                title: 'Stefa',
+                description: 'Non President',
+                createdAt: 1231231
+            }
+        ];
+        it('filterAndSortNews', () => {
+
+        });
+    });
+
 });

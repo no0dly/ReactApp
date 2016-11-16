@@ -48,3 +48,10 @@ export var saveNews = (id, newTitle, newDescription) => {
         description: newDescription
     }
 }
+
+export var searchNews = (searchText) => {
+    return {
+        type: 'SEARCH_NEWS',
+        searchText
+    }
+}

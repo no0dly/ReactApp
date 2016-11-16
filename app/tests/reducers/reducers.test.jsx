@@ -180,4 +180,13 @@ describe('reducers',() => {
             expect(res[0].description).toEqual(initNews[0].description);
         });
     });
+
+    it('searchNews', () => {
+        var action = {
+            type: 'SEARCH_NEWS',
+            searchText: 'Putin'
+        };
+        var res = reducers.searchTextReducer(df(''), df(action));
+        expect(res).toEqual(action.searchText);
+    });
 });
